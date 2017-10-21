@@ -8,6 +8,16 @@ class ImageWithoutAltAttributeError extends Error {
     }
 }
 
+class missingAriaError extends Error {
+    constructor(element, attr) {
+        super(element);
+        this.name = 'MissingAriaError';
+        this.stack = new Error().stack;
+        this.element = element;
+        this.message = `Missing ${attr} attribute on ${element}`;
+  }
+}
+
 export {
     ImageWithoutAltAttributeError
 }
