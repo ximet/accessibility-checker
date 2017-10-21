@@ -1,3 +1,4 @@
+import { ImageWithoutAltAttributeError } from './Error.js';
 
 const checkAltAttributeForImg = (context, logErrorCallback) => {
     for (const img of context.querySelectorAll('img')) {
