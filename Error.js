@@ -4,7 +4,7 @@ class ImageWithoutAltAttributeError extends Error {
         this.name = 'ImageWithoutAltAttributeError'
         this.stack = new Error().stack
         this.element = element
-        this.message = `Missing alt attribute on ${inspect(element)}`
+        this.message = `Missing alt attribute on ${element}`
     }
 }
 
