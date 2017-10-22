@@ -12,7 +12,7 @@ const checkAltAttributeForImg = (context, logErrorCallback) => {
 
 const checkButton = (context, logErrorCallback) => {
     for (const button of context.querySelectorAll('button')) {
-        if (!isHidden(button) && !accessibleText(button)) {
+        if (!isHidden(button) && !isAccessibleText(button)) {
             logErrorCallback(new ButtonWithoutTextError(button))
         }
     }
