@@ -28,6 +28,18 @@ class ButtonWithoutTextError extends Error {
   }
 }
 
+class InputWithoutLabelError extends Error {
+    constructor(element, attr) {
+        super(element);
+        this.name = 'InputWithoutLabelError';
+        this.stack = new Error().stack;
+        this.element = element;
+        this.message = `Missing label attribute on ${element}`;
+  }
+}
+
 export {
-    ImageWithoutAltAttributeError
+    ImageWithoutAltAttributeError,
+    ButtonWithoutTextError,
+    InputWithoutLabelError
 }
