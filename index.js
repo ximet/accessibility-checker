@@ -1,8 +1,9 @@
-import { ImageWithoutAltAttributeError } from './src/CustomError.js';
-import { checkAltAttributeForImg } from './src/checkerHelper.js';
+import { checkAltAttributeForImg, checkButton } from './src/checkerHelper.js';
+import { checkButton } from './src/checkerHelper';
 
 export const checkProblemsAStandard = (context, logger) = {
     checkAltAttributeForImg(context, logger);
+    checkButton(context, logger);
 }
 
 export const checkProblemsAAStandard = (context, logger) = {
