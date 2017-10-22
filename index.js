@@ -1,9 +1,9 @@
-import { checkAltAttributeForImg, checkButton } from './src/checkerHelper.js';
-import { checkButton } from './src/checkerHelper';
+import { checkAltAttributeForImg, checkButton, checkInput } from './src/checkerHelper.js';
 
 export const checkProblemsAStandard = (context, logger) => {
     checkAltAttributeForImg(context, logger);
     checkButton(context, logger);
+    checkInput(context, logger);    
 }
 
 export const checkProblemsAAStandard = (context, logger) => {

@@ -29,5 +29,6 @@ const checkInput = (context, logErrorCallback) => {
 
 export {
     checkAltAttributeForImg,
-    checkButton
+    checkButton,
+    checkInput
 }
