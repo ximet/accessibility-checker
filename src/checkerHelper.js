@@ -1,4 +1,4 @@
-import { ImageWithoutAltAttributeError, ButtonWithoutTextError, InputWithoutLabelError } from './src/CustomError.js';
+import { ImageWithoutAltAttributeError, ButtonWithoutTextError, InputWithoutLabelError, ListItemWithoutTabIndexError } from './src/CustomError.js';
 import { isHidden, isAccessibleText } from './isHelper.js'
 const inputSelector = 'input[type=text], input[type=url], input[type=search], input[type=number], input[type=password], input[type=checkbox], input[type=radio], textarea';
 
@@ -23,6 +23,14 @@ const checkInput = (context, logErrorCallback) => {
         const inputLabel = input.labels ? input.labels[0] : false;
         if (!inputLabel && !isHidden(input) && !input.hasAttribute('aria-label')) {
           logError(new InputWithoutLabelError(input))
+        }
+    }
+}
+
+const checkTabIndexAttributeForListItem = (context, logErrorCallback) => {
+    for (const li of context.querySelectorAll('li')) {
+        if (!li.hasAttribute('tabindex')) {
+            logErrorCallback(new ListItemWithoutTabIndexError(li))
         }
     }
 }

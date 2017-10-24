@@ -38,8 +38,19 @@ class InputWithoutLabelError extends Error {
   }
 }
 
+class ListItemWithoutTabIndexError extends Error {
+    constructor(element, attr) {
+        super(element);
+        this.name = 'ListItemWithoutTabIndexError';
+        this.stack = new Error().stack;
+        this.element = element;
+        this.message = `Missing tabindex attribute on ${element}`;
+  }
+}
+
 export {
     ImageWithoutAltAttributeError,
     ButtonWithoutTextError,
-    InputWithoutLabelError
+    InputWithoutLabelError,
+    ListItemWithoutTabIndexError
 }
