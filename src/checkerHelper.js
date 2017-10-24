@@ -1,4 +1,4 @@
-import { ImageWithoutAltAttributeError, DOMElementWithoutLabelError, ListItemWithoutTabIndexError, LinkWithoutHrefError, LinkWithoutButtonRoleError } from './src/CustomError.js';
+import { ImageWithoutAltAttributeError, DOMElementWithoutLabelError, ListItemWithoutTabIndexError, LinkWithoutHrefError, LinkWithoutButtonRoleError, LabelMissingControlError } from './src/CustomError.js';
 import { isHidden, isAccessibleText } from './isHelper.js'
 const inputSelector = 'input[type=text], input[type=url], input[type=search], input[type=number], input[type=password], input[type=checkbox], input[type=radio], textarea';
 
@@ -38,12 +38,22 @@ const checkTabIndexAttributeForListItem = (context, logErrorCallback) => {
 const checkLink = (context, logErrorCallback) => {
     for (const a of context.querySelectorAll('a')) {
         if (a.getAttribute('href') === '' && a.getAttribute('href') === null) {
-            logError(new LinkWithoutHrefError(a))
+            logError(new LinkWithoutHrefError(a));
         }
         else if (a.getAttribute('role') !== 'button') {
-          logError(new LinkWithoutButtonRoleError(a))
+          logError(new LinkWithoutButtonRoleError(a));
         } else if (!isAccessibleText(a)) {
-          logError(new DOMElementWithoutLabelError(a))
+          logError(new DOMElementWithoutLabelError(a));
+        }
+      }
+}
+
+const checkLabel = (context, logErrorCallback) => {
+    for (const label of context.querySelectorAll('label')) {
+        const control = label.control;
+    
+        if (!control && !isHidden(label)) {
+          logError(new LabelMissingControlError(label));
         }
       }
 }
@@ -52,5 +62,7 @@ export {
     checkAltAttributeForImg,
     checkButton,
     checkInput,
-    checkLink
+    checkLink,
+    checkLabel,
+    checkTabIndexAttributeForListItem
 }

@@ -21,7 +21,7 @@ class MissingAriaError extends Error {
 class DOMElementWithoutLabelError extends Error {
     constructor(element, attr) {
         super(element);
-        this.name = 'ButtonWithoutTextError';
+        this.name = 'DOMElementWithoutLabelError';
         this.stack = new Error().stack;
         this.element = element;
         this.message = `Missing label/alt/title attribute on ${element}`;
@@ -58,10 +58,21 @@ class LinkWithoutHrefError extends Error {
   }
 }
 
+class LabelMissingControlError extends Error {
+    constructor(element, attr) {
+        super(element);
+        this.name = 'LabelMissingControlError';
+        this.stack = new Error().stack;
+        this.element = element;
+        this.message = `Missing controls on ${element}`;
+  }
+}
+
 export {
     ImageWithoutAltAttributeError,
     DOMElementWithoutLabelError,
     ListItemWithoutTabIndexError,
     LinkWithoutButtonRoleError,
-    LinkWithoutHrefError
+    LinkWithoutHrefError,
+    LabelMissingControlError
 }
