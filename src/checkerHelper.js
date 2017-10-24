@@ -1,4 +1,4 @@
-import { ImageWithoutAltAttributeError, ButtonWithoutTextError, InputWithoutLabelError, ListItemWithoutTabIndexError } from './src/CustomError.js';
+import { ImageWithoutAltAttributeError, DOMElementWithoutLabelError, ListItemWithoutTabIndexError, LinkWithoutHrefError, LinkWithoutButtonRoleError } from './src/CustomError.js';
 import { isHidden, isAccessibleText } from './isHelper.js'
 const inputSelector = 'input[type=text], input[type=url], input[type=search], input[type=number], input[type=password], input[type=checkbox], input[type=radio], textarea';
 
@@ -13,7 +13,7 @@ const checkAltAttributeForImg = (context, logErrorCallback) => {
 const checkButton = (context, logErrorCallback) => {
     for (const button of context.querySelectorAll('button')) {
         if (!isHidden(button) && !isAccessibleText(button)) {
-            logErrorCallback(new ButtonWithoutTextError(button))
+            logErrorCallback(new DOMElementWithoutLabelError(button))
         }
     }
 }
@@ -22,7 +22,7 @@ const checkInput = (context, logErrorCallback) => {
     for (const input of context.querySelectorAll(inputSelector)) {
         const inputLabel = input.labels ? input.labels[0] : false;
         if (!inputLabel && !isHidden(input) && !input.hasAttribute('aria-label')) {
-          logError(new InputWithoutLabelError(input))
+          logError(new DOMElementWithoutLabelError(input))
         }
     }
 }
@@ -35,8 +35,22 @@ const checkTabIndexAttributeForListItem = (context, logErrorCallback) => {
     }
 }
 
+const checkLink = (context, logErrorCallback) => {
+    for (const a of context.querySelectorAll('a')) {
+        if (a.getAttribute('href') === '' && a.getAttribute('href') === null) {
+            logError(new LinkWithoutHrefError(a))
+        }
+        else if (a.getAttribute('role') !== 'button') {
+          logError(new LinkWithoutButtonRoleError(a))
+        } else if (!isAccessibleText(a)) {
+          logError(new DOMElementWithoutLabelError(a))
+        }
+      }
+}
+
 export {
     checkAltAttributeForImg,
     checkButton,
-    checkInput
+    checkInput,
+    checkLink
 }
