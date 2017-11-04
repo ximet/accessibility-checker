@@ -68,11 +68,22 @@ class LabelMissingControlError extends Error {
   }
 }
 
+class HeaderWithoutBannerRoleError extends Error {
+    constructor(element, attr) {
+        super(element);
+        this.name = 'HeaderWithoutBannerRoleError';
+        this.stack = new Error().stack;
+        this.element = element;
+        this.message = `Missing role -> banner on ${element}`;
+  }
+}
+
 export {
     ImageWithoutAltAttributeError,
     DOMElementWithoutLabelError,
     ListItemWithoutTabIndexError,
     LinkWithoutButtonRoleError,
     LinkWithoutHrefError,
-    LabelMissingControlError
+    LabelMissingControlError,
+    HeaderWithoutBannerRoleError
 }
