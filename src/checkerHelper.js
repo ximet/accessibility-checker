@@ -1,4 +1,4 @@
-import { ImageWithoutAltAttributeError, DOMElementWithoutLabelError, ListItemWithoutTabIndexError, LinkWithoutHrefError, LinkWithoutButtonRoleError, LabelMissingControlError, HeaderWithoutBannerRoleError } from './src/CustomError.js';
+import { ImageWithoutAltAttributeError, DOMElementWithoutLabelError, ListItemWithoutTabIndexError, LinkWithoutHrefError, LinkWithoutButtonRoleError, LabelMissingControlError, HeaderWithoutBannerRoleError, HTMLWithoutLanguageError } from './src/CustomError.js';
 import { isHidden, isAccessibleText } from './isHelper.js'
 const inputSelector = 'input[type=text], input[type=url], input[type=search], input[type=number], input[type=password], input[type=checkbox], input[type=radio], textarea';
 
@@ -58,10 +58,18 @@ const checkLabel = (context, logErrorCallback) => {
     }
 }
 
+const checkHTMLTag = (context, logErrorCallback) => {
+    for (const html of context.querySelectorAll('html')) {
+        if (html.getAttribute('lang') === '' || html.getAttribute('href') === null) {
+            logError(new HTMLWithoutLanguageError(html));
+        }
+    }
+}
+
 const checkHeader = (context, logErrorCallback) => {
     for (const header of context.querySelectorAll('header')) {
-        if (a.getAttribute('role') !== 'banner') {
-            logError(new HeaderWithoutBannerRoleError(a));
+        if (header.getAttribute('role') !== 'banner') {
+            logError(new HeaderWithoutBannerRoleError(header));
         }
     }
 }
@@ -73,5 +81,6 @@ export {
     checkLink,
     checkLabel,
     checkHeader,
+    checkHTMLTag,
     checkTabIndexAttributeForListItem
 }

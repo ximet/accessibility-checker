@@ -78,6 +78,16 @@ class HeaderWithoutBannerRoleError extends Error {
   }
 }
 
+class HTMLWithoutLanguageError extends Error {
+    constructor(element, attr) {
+        super(element);
+        this.name = 'HTMLWithoutLanguageError';
+        this.stack = new Error().stack;
+        this.element = element;
+        this.message = `Missing language attribute on ${element}`;
+  }
+}
+
 export {
     ImageWithoutAltAttributeError,
     DOMElementWithoutLabelError,
@@ -85,5 +95,6 @@ export {
     LinkWithoutButtonRoleError,
     LinkWithoutHrefError,
     LabelMissingControlError,
-    HeaderWithoutBannerRoleError
+    HeaderWithoutBannerRoleError,
+    HTMLWithoutLanguageError
 }
