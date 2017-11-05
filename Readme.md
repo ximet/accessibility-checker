@@ -2,6 +2,9 @@
 
 client side accessibility checke
 
+## Checklist
+
+http://a11yproject.com/checklist.html
 
 ## Install
 
