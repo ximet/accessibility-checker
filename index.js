@@ -1,4 +1,4 @@
-import { checkAltAttributeForImg, checkButton, checkInput, checkLink, checkLabel, checkTabIndexAttributeForListItem } from './src/checkerHelper.js';
+import { checkAltAttributeForImg, checkButton, checkInput, checkLink, checkLabel, checkTabIndexAttributeForListItem, checkHeader, checkHTMLTag } from './src/checkerHelper.js';
 
 export const checkProblemsAStandard = (context, logger) => {
     checkAltAttributeForImg(context, logger);
@@ -11,6 +11,8 @@ export const checkProblemsAStandard = (context, logger) => {
 
 export const checkProblemsAAStandard = (context, logger) => {
     checkProblemsAStandard(context, logger);
+    checkHeader(context, logger);
+    checkHTMLTag(context, logger);
 }
 
 export const checkProblemsAAAStandard = (context, logger) => {
