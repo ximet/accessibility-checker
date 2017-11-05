@@ -19,7 +19,7 @@ class MissingAriaError extends Error {
 }
 
 class DOMElementWithoutLabelError extends Error {
-    constructor(element, attr) {
+    constructor(element) {
         super(element);
         this.name = 'DOMElementWithoutLabelError';
         this.stack = new Error().stack;
@@ -29,7 +29,7 @@ class DOMElementWithoutLabelError extends Error {
 }
 
 class ListItemWithoutTabIndexError extends Error {
-    constructor(element, attr) {
+    constructor(element) {
         super(element);
         this.name = 'ListItemWithoutTabIndexError';
         this.stack = new Error().stack;
@@ -39,27 +39,27 @@ class ListItemWithoutTabIndexError extends Error {
 }
 
 class LinkWithoutButtonRoleError extends Error {
-    constructor(element, attr) {
+    constructor(element) {
         super(element);
         this.name = 'LinkWithoutButtonRoleError';
         this.stack = new Error().stack;
         this.element = element;
-        this.message = `Missing tabindex attribute on ${element}`;
+        this.message = `Missing button role attribute on ${element}`;
   }
 }
 
 class LinkWithoutHrefError extends Error {
-    constructor(element, attr) {
+    constructor(element) {
         super(element);
         this.name = 'LinkWithoutHrefError';
         this.stack = new Error().stack;
         this.element = element;
-        this.message = `Missing tabindex attribute on ${element}`;
+        this.message = `Missing href attr attribute on ${element}`;
   }
 }
 
 class LabelMissingControlError extends Error {
-    constructor(element, attr) {
+    constructor(element) {
         super(element);
         this.name = 'LabelMissingControlError';
         this.stack = new Error().stack;
@@ -69,7 +69,7 @@ class LabelMissingControlError extends Error {
 }
 
 class HeaderWithoutBannerRoleError extends Error {
-    constructor(element, attr) {
+    constructor(element) {
         super(element);
         this.name = 'HeaderWithoutBannerRoleError';
         this.stack = new Error().stack;
@@ -79,7 +79,7 @@ class HeaderWithoutBannerRoleError extends Error {
 }
 
 class HTMLWithoutLanguageError extends Error {
-    constructor(element, attr) {
+    constructor(element) {
         super(element);
         this.name = 'HTMLWithoutLanguageError';
         this.stack = new Error().stack;
